@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sonali 🎉</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg,#ffafcc,#cdb4db,#bde0fe);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* Glass Card */
+.container{
+  background: linear-gradient(145deg,#fff0f6,#f3e8ff);
+  backdrop-filter: blur(10px);
+  padding:30px;
+  border-radius:26px;
+  width:90%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 30px 70px rgba(0,0,0,0.25);
+}
+
+/* Text */
+.title{
+  font-size:2rem;
+  animation:pop 1.5s infinite alternate;
+}
+
+.name{
+  font-size:2.4rem;
+  color:#ff4d8d;
+  margin:10px 0;
+}
+
+.message{
+  color:#555;
+  margin-top:8px;
+}
+
+/* Cake */
+.cake{
+  position:relative;
+  width:180px;
+  height:160px;
+  margin:40px auto;
+  animation:floatCake 3s ease-in-out infinite;
+}
+
+/* Cake layers */
+.cake-layer{
+  position:absolute;
+  width:180px;
+  height:55px;
+  background:linear-gradient(#ff7aa2,#ff477e);
+  border-radius:16px;
+  bottom:0;
+}
+
+.cake-layer.middle{
+  width:160px;
+  left:10px;
+  bottom:45px;
+}
+
+.cake-layer.top{
+  width:140px;
+  left:20px;
+  bottom:90px;
+}
+
+/* Icing */
+.icing{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:18px;
+  background:#ffe5ec;
+  border-radius:16px 16px 10px 10px;
+}
+
+.icing::before,
+.icing::after{
+  content:'';
+  position:absolute;
+  width:14px;
+  height:18px;
+  background:#ffe5ec;
+  border-radius:0 0 10px 10px;
+}
+
+.icing::before{ left:30px; }
+.icing::after{ right:30px; }
+
+/* Plate */
+.plate{
+  position:absolute;
+  bottom:-18px;
+  left:-10px;
+  width:200px;
+  height:22px;
+  background:#dee2ff;
+  border-radius:50%;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Candle */
+.candle{
+  position:absolute;
+  width:14px;
+  height:45px;
+  background:linear-gradient(#ffe066,#ffd43b);
+  left:50%;
+  top:-45px;
+  transform:translateX(-50%);
+  border-radius:7px;
+  cursor:pointer;
+}
+
+/* Flame */
+.flame{
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;
+  height:22px;
+  background:radial-gradient(circle at 50% 30%,#fff1a8,#ff9f1c,#ff6a00);
+  border-radius:50%;
+  animation:flameMove .25s infinite alternate;
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation:floatUp 3s linear forwards;
+  pointer-events:none;
+}
+
+/* Photos */
+.photo-title{
+  color:#ff4d8d;
+  margin-top:20px;
+}
+
+.photos{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top:15px;
+}
+
+.photos img{
+  width:90px;
+  height:90px;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:0 10px 25px rgba(0,0,0,0.18);
+  transition:.3s;
+}
+
+.photos img:hover{
+  transform:scale(1.1);
+}
+
+.footer{
+  margin-top:20px;
+  font-size:.9rem;
+  color:#666;
+}
+
+/* Animations */
+@keyframes flameMove{
+  from{ transform:translateX(-50%) scale(1); }
+  to{ transform:translateX(-50%) scale(1.15); }
+}
+
+@keyframes floatCake{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
+@keyframes floatUp{
+  from{ transform:translateY(0); opacity:1; }
+  to{ transform:translateY(-150px); opacity:0; }
+}
+
+@keyframes pop{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.05); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 class="title">🎉 Happy Birthday 🎉</h1>
+  <h2 class="name">Sonali 💖</h2>
+
+  <p class="message">Click the candle and make a wish ✨</p>
+
+  <div class="cake">
+    <div class="candle" onclick="blowCandle()">
+      <div class="flame" id="flame"></div>
+    </div>
+
+    <div class="cake-layer top"><div class="icing"></div></div>
+    <div class="cake-layer middle"><div class="icing"></div></div>
+    <div class="cake-layer"><div class="icing"></div></div>
+
+    <div class="plate"></div>
+  </div>
+
+  <h3 class="photo-title">✨ Sweet Memories ✨</h3>
+  <div class="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+
+  <p class="footer">just for you <3</p>
+</div>
+
+<script>
+function blowCandle(){
+  const flame=document.getElementById("flame");
+  if(flame) flame.remove();
+
+  for(let i=0;i<20;i++){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.bottom="0";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
